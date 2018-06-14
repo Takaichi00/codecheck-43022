@@ -1,19 +1,18 @@
 package com.example.codecheckagiletest.dmain.model;
 
-import javax.persistence.Column;
 import lombok.Data;
 
 @Data
-public class CreateRecepesRequestDto {
+public class Recipe {
+
 
   private String title;
 
-  @Column(name = "making_time")
-  private String makingTime;
+  private String making_time;
 
   private String serves;
 
   private String ingredients;
 
-  private int cost;
+  private String cost;
 }

@@ -1,47 +1,43 @@
-package com.example.codecheckagiletest.dmain.model;
+package com.example.codecheckagiletest.dao;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "recipes")
-public class RecipesEntity {
+public class RecipesEntity extends TimestampEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column
+  @NotNull
   private int id;
 
   @Column
+  @NotNull
   private String title;
 
   @Column(name = "making_time")
+  @NotNull
   private String makingTime;
 
   @Column
+  @NotNull
   private String serves;
 
   @Column
+  @NotNull
   private String ingredients;
 
   @Column
+  @NotNull
   private int cost;
-
-  @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "created_at")
-  private Date createdAt;
-
-  @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "updated_at")
-  private Date updatedAt;
 
 }
