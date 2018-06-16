@@ -14,8 +14,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.example.codecheckagiletest.dao.RecipesEntity;
-import com.example.codecheckagiletest.dao.RecipesRepository;
+import com.example.codecheckagiletest.dmain.entity.RecipesEntity;
+import com.example.codecheckagiletest.dmain.repository.RecipesRepository;
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.Operations;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
@@ -28,21 +28,24 @@ import com.ninja_squad.dbsetup.operation.Operation;
 public class RecipesServiceTest {
 
   @Autowired
-  RecipesService testTarget;
+  private RecipesService testTarget;
 
   @Autowired
-  RecipesRepository receipesRepository;
+  private RecipesRepository receipesRepository;
 
 
   public static final Operation DELETE_ALL = Operations.deleteAllFrom("recipes");
-//  public static final Operation CLEAR_ID = sql("ALTER TABLE recipes AUTO_INCREMENT = 1;");
 
   public static final Operation INSERT =
-      Operations.insertInto("recipes").withGeneratedValue("id", ValueGenerators.sequence().startingAt(1).incrementingBy(1))
-              .columns("title","making_time","serves","ingredients","cost","created_at","updated_at")
-              .values("チキンカレー","45分","4人","玉ねぎ,肉,スパイス",1000,"2016-01-10 12:10:12","2016-01-10 12:10:12")
-              .values("オムライス","30分","2人","玉ねぎ,卵,スパイス,醤油",700,"2016-01-11 13:10:12","2016-01-11 13:10:12")
-              .build();
+      Operations.insertInto("recipes")
+          .withGeneratedValue("id", ValueGenerators.sequence().startingAt(1).incrementingBy(1))
+          .columns("title", "making_time", "serves", "ingredients", "cost", "created_at",
+              "updated_at")
+          .values("チキンカレー", "45分", "4人", "玉ねぎ,肉,スパイス", 1000, "2016-01-10 12:10:12",
+              "2016-01-10 12:10:12")
+          .values("オムライス", "30分", "2人", "玉ねぎ,卵,スパイス,醤油", 700, "2016-01-11 13:10:12",
+              "2016-01-11 13:10:12")
+          .build();
 
   @Autowired
   private DataSource dataSource;

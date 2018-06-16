@@ -1,12 +1,12 @@
 ## Deploy information
 #### Language used
-- {node / python / ruby / Go / PHP / Java / etc.}
+- Java
 
 #### Hosting service
-- {AWS / DigitalOcean / Sakura / Heroku / etc.}
+- Heroku
 
 #### Brief explanation about how your code works
--
+- パッケージ構成は[こちら](https://terasolunaorg.github.io/guideline/public_review/Overview/ApplicationLayering.html#repository)を参考にしました
 
 #### Problem faced while solving the challenge
  -

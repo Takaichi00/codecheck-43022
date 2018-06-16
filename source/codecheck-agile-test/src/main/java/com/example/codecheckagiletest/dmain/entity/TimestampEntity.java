@@ -1,13 +1,18 @@
-package com.example.codecheckagiletest.dao;
+package com.example.codecheckagiletest.dmain.entity;
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+/**
+ * 作成日時と更新日時のエンティティ.
+ */
+@Getter
+@Setter
 @MappedSuperclass
 public abstract class TimestampEntity {
 
@@ -19,12 +24,12 @@ public abstract class TimestampEntity {
 
   @PrePersist
   public void onPrePersist() {
-      setCreatedAt(new Date());
-      setUpdatedAt(new Date());
+    setCreatedAt(new Date());
+    setUpdatedAt(new Date());
   }
 
   @PreUpdate
   public void onPreUpdate() {
-      setUpdatedAt(new Date());
+    setUpdatedAt(new Date());
   }
 }

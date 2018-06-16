@@ -1,14 +1,18 @@
 package com.example.codecheckagiletest.dmain.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+/**
+ * レシピ内容のDTO.
+ */
 @Data
-public class Recipe {
-
+public class RecipeDto {
 
   private String title;
 
-  private String making_time;
+  @JsonProperty("making_time")
+  private String makingTime;
 
   private String serves;
 
