@@ -18,6 +18,7 @@ public class RecipesService {
 
   /**
    * レシピの一覧を返却する.
+   *
    * @return レシピエンティティのリスト
    */
   public List<RecipesEntity> findAllRecipes() {
@@ -26,6 +27,7 @@ public class RecipesService {
 
   /**
    * レシピを新規作成する.
+   *
    * @param recipesEntity 作成したいレシピエンティティ
    */
   public void createRecipe(RecipesEntity recipesEntity) {
@@ -34,16 +36,21 @@ public class RecipesService {
 
   /**
    * 指定したidに対応するレシピを返却する.
+   *
    * @param id 取得したいレシピid
    * @return 取得できたレシピエンティティ
    */
   public RecipesEntity findRecipeById(int id) {
     Optional<RecipesEntity> result = recipesRepository.findById(id);
-    return result.get();
+    if (result.isPresent()) {
+      return result.get();
+    }
+    return null;
   }
 
   /**
    * レシピを更新する.
+   *
    * @param recipesEntity 更新したいレシピエンティティ
    */
   public void updateRecipeById(RecipesEntity recipesEntity) {
@@ -52,6 +59,7 @@ public class RecipesService {
 
   /**
    * 指定したidに対応するレシピを削除する.
+   *
    * @param id 削除したいレシピのid
    */
   public void deleteRecipeById(int id) {
@@ -60,6 +68,7 @@ public class RecipesService {
 
   /**
    * 指定したidのレシピが存在するかどうかを判定する.
+   *
    * @param id 存在するか判定するid
    * @return 判定するならtrue, しないならfalse
    */

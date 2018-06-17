@@ -74,6 +74,7 @@ public class RecipesController {
 
   /**
    * レシピ作成に失敗したときにエラーメッセージを返却する.
+   *
    * @return 失敗したメッセージと失敗内容
    */
   @ExceptionHandler({RequestBadRecipeException.class})
@@ -89,6 +90,7 @@ public class RecipesController {
 
   /**
    * データベースの全てのレシピをを返却する.
+   *
    * @return 取得できたレシピ一覧
    */
   @RequestMapping(method = RequestMethod.GET)
@@ -118,6 +120,7 @@ public class RecipesController {
 
   /**
    * 指定idのレシピのみを返却する.
+   *
    * @param id 取得したいレシピのid
    * @return 取得できたidのレシピ
    */
@@ -125,7 +128,14 @@ public class RecipesController {
   public ResponseFindRecipeById getRecipeFindById(@PathVariable int id) {
     RecipesEntity recipeEntity = recipesService.findRecipeById(id);
 
+    if (recipeEntity == null) {
+      ResponseFindRecipeById responseFindRecipeByIdNg = new ResponseFindRecipeById();
+      responseFindRecipeByIdNg.setMessage("not value");
+      return responseFindRecipeByIdNg;
+    }
+
     RecipeDto recipe = new RecipeDto();
+
     recipe.setTitle(recipeEntity.getTitle());
     recipe.setMakingTime(recipeEntity.getMakingTime());
     recipe.setServes(recipeEntity.getServes());
@@ -143,6 +153,7 @@ public class RecipesController {
 
   /**
    * 指定idのレシピを更新し、更新したレシピを返却する.
+   *
    * @param recipe 更新したいレシピ
    * @param id 更新したいレシピのid
    * @return 更新に成功したメッセージと更新したレシピ内容
@@ -169,6 +180,7 @@ public class RecipesController {
 
   /**
    * 指定idのレシピを削除する.
+   *
    * @param id 削除したいレシピid
    * @return 削除に成功した場合は成功したメッセージ、指定idのレシピが存在せずに失敗した場合は失敗メッセージ
    */
